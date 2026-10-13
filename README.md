@@ -79,6 +79,54 @@ SW1(config-if-range)# exit
 Usciamo dalla modalità di configurazione globale, verifichiamo la configurazione attiva e salviamo tutto nella memoria permanente dello switch.
 
 ```text
+
+# Guida alla Configurazione dei Cisco Switch
+
+Questa guida illustra i passaggi fondamentali per configurare i nomi degli switch, impostare le porte Trunk e verificare/salvare la configurazione.
+
+---
+
+## FASE 1 - Diamo un nome ai 2 switch (consigliato)
+
+Sul primo switch:
+```text
+Switch> enable
+Switch# configure terminal
+Switch(config)# hostname SW1
+SW1# show interfaces status  <- Mostra lo stato di tutte le porte
+```
+
+*Ripetere la procedura anche per lo **SW2**, sostituendo il nome con `SW2`.*
+
+---
+
+## FASE 2 - Configurazione della porta Trunk (su entrambi gli switch)
+
+Eseguire i comandi seguenti per configurare la porta Trunk (es. `gigabitethernet 0/1`):
+
+```text
+SW1> enable
+SW1# configure terminal
+SW1(config)# interface gigabitethernet 0/1
+SW1(config-if)# switchport mode trunk
+SW1(config-if)# exit
+```
+
+*Ripetere per lo **SW2** (assicurandosi di adattare il prompt o il nome dello switch se necessario).*
+
+---
+
+## FASE 3 - Verifica e Salvataggio (su entrambi gli switch)
+
+Controllare che la configurazione sia corretta e salvarla nella memoria persistente:
+
+```text
+SW1# show interfaces trunk  <- Mostra solo le porte Trunk attive
+SW1# show vlan brief        <- Mostra il riepilogo delle VLAN
+SW1# copy running-config startup-config
+```
+
+*Ripetere per lo **SW2**.*
 SW1(config)# end
 
 SW1# show vlan brief
