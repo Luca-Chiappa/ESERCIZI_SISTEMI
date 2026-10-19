@@ -108,7 +108,7 @@ Eseguire i comandi seguenti per configurare la porta Trunk (es. `gigabitethernet
 SW1> enable
 SW1# configure terminal
 SW1(config)# interface gigabitethernet 0/1
-SW1(config-if)# switchport mode trunk
+SW1(config-if)# switchport mode trunk (encapsulation dot1q dovete aggiungere al comando se non usate dispositivi Cisco)
 SW1(config-if)# exit
 ```
 
